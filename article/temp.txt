@@ -1,0 +1,59 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+\label{lemma:equivbscldgm}
+Considering a $m$-th transmit channel in the Fig. \ref{fig:modelo} as in the Fig. \ref{fig:equiv}a,
+where we have a source $U_0$ that passes through of BSC channel with error probability $p_m$ and the output 
+is codified with a systematic LDGM matrix G, with rate $r$ and $Y$ ones per column in the parity matrix $P$. 
+This is statistically  identical to have a source $U_0$ that is codified with a matrix $G$
+and pass through a BSC channel with error probability $\hat{p}_m$, as is drawn in the Fig. \ref{fig:equiv}b.
+Where
+\begin{equation} \label{eq:hatpmX}
+\hat{p}_m= r p_m + (1-r)(||^Y p_m),
+\end{equation}
+\begin{figure}[h!bt]
+\centering
+\includegraphics[width=5.0cm]{equiv.eps}
+\caption{Equivalent Model of LDGM Matrix Later of BSC Channel.} \label{fig:equiv}
+\end{figure} 
+\end{lemma}
+\begin{proof}
+\label{proof:equivbscldgm}
+In the Fig \ref{fig:modelo} each vector $X^N_m=[$ $x_{m(1)},$ $...,$ $x_{m(K)},$ $x_{m(K+1)},$ $...,$ $x_{m(N)}]$ 
+can be seen as a noise codified version of vector $U^K_0=[$ $u_{0(1)},$ $...,$  $u_{0(K)}]$ of source
+$U_0$. The first $K$ bits of $X^N_m$ have a error probability $p_m$ and the next $N-K$
+bits have a probability error of $\mathring{p}_m$. 
+
+For to calculate $\mathring{p}_m$ first is necessary to define a vector $U^K_m=[$ $u_{m(1)},$ $...,$  
+$u_{m(K)}]$ of source $U_m$ as 
+\begin{equation} \label{eq:umemu0}
+u_{m(k)}=u_{0(k)} \oplus e_{m(k)},
+\end{equation}
+$\forall k \in \{1, 2, ...,K\}$, 
+where $e_{m(k)}$ is a element of vector $E^N_{m}=[$ $e_{m(1)},$ $...,$  
+$e_{m(K)}]$ with $Pr(E_m=1)=p_m$ and $\oplus$ is the operator XOR.
+Thus, each coded bit in $x_{m(n)}$, $\forall n \in \{K+1, K+2, ...,N\}$, is equal to
+\begin{align}\label{eq:xmn00}
+x_{m(n)} &= \sum^{\oplus}_{l \in \varphi_n } { u_{m(l)} }                \\ 
+%~        &= \sum^{\oplus}_{l \in \varphi_n } { u_{0(l)} \oplus  e_{m(l)}} \\
+~        &= \sum^{\oplus}_{l \in \varphi_n } { u_{0(l)} } \oplus \sum^{\oplus}_{l \in \varphi_n } {e_{m(l)}},
+\end{align}
+where $\sum^{\oplus}$ is a XOR summatory and $\varphi_n$ is a subset with the index bits for calculate to 
+$n$-th parity check bit $x_{m(n)}$ using the parity matrix $P$. $\varphi_n$ has $Y$ elements. 
+Thus, the error probability $\mathring{p}_m$ is equal to 
+\begin{equation} \label{eq:dotpm}
+\mathring{p}_m= Pr(\sum^{\oplus}_{l \in \varphi_n } {e_{m(l)}}=1).
+\end{equation}
+Using the Lemma \ref{lemma:xor} for $Y$ sources independents and identically distributed 
+\begin{equation} \label{eq:dotpm2}
+\mathring{p}_m= ||^Y p_m.
+\end{equation}
+
+Know it can be say that in the Fig. \ref{fig:equiv}a  each bit of coded vector 
+$X^N_m$ of source $U_0$ has in average a probability error of
+\begin{equation} \label{eq:hatpm}
+\hat{p}_m= r p_m + (1-r)\mathring{p}_m,
+\end{equation}
+with the first $K$ bits with probability $p_m$ and the last $N-K$ with probability $\mathring{p}_m$.
+This is statistically  identical to have a source $U_0$ that is codified with a matrix $G$
+and pass through a BSC channel with error probability $\hat{p}_m$, as is drawn in the Fig. \ref{fig:equiv}b.
+\end{proof}
